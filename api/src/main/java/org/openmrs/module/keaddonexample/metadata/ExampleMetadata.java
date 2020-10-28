@@ -46,8 +46,8 @@ public class ExampleMetadata extends AbstractMetadataBundle {
 	public void install() {
 		install(encounterType("Example encounter", "Just an example", _EncounterType.EXAMPLE));
 		install(encounterType("Social Work", "Social Work Encounter", _EncounterType.SOCIAL_WORK));
-		install(encounterType("VMMC", "VMMC Initial Encounter", _EncounterType.VMMC_INITIAL));
-		install(encounterType("VMMC", "VMMC Followup Encounter", _EncounterType.VMMC_FOLLOWUP));
+		install(encounterType("VMMC Initial ", "VMMC Initial Encounter", _EncounterType.VMMC_INITIAL));
+		install(encounterType("VMMC Followup  ", "VMMC Followup Encounter", _EncounterType.VMMC_FOLLOWUP));
 
 		install(form("Example form", null, _EncounterType.EXAMPLE, "1", _Form.EXAMPLE));
 		install(form("Social Work Adult Screening form", null, _EncounterType.SOCIAL_WORK, "1", _Form.ADULT_SCREENING));

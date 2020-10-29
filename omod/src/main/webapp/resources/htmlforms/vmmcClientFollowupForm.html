@@ -54,7 +54,46 @@
 <!-- add content here   -->
 		<fieldset>
 			<legend>VMMC Followup Form</legend>
+			<fieldset>
+				<legend>POST OP FOLLOW-UP</legend>
+				<table class="simple-table">
+					<tr>
+						<td>Type of Visit: </td>
+						<td><obs conceptId="160530"
+								 id="post_op_visit_type" answerConceptIds="162253,163734,165304,5622"
+								 answerLabels="48 Hrs,3 Days,7 Days, Other" required="true" style="radio"/>
+							&#160;&#160;&#160;&#160;&#160;&#160;
+							If other specify <obs  conceptId="160632" id="specify"/>
+						 </td>
+					</tr>               <tr>
+					<td>Post OP Adverse Event? </td>
+					<td><obs conceptId="162871"
+							 id="adverse_event" answerConceptIds="1065,1066" answerLabels="Yes, No"
+							 required="true" style="no_yes"/> </td>
+				</tr>               <tr>
+					<td>If Yes, Refer AE Description Form and complete the following</td>               </tr>               <tr>
+					<td>Type of AE </td>
+					<td><obs conceptId="162579"
+							 id="type_AE"
+							 required="true" size="40" /> </td>
+					<td>If Yes, How would you rate it?</td>
+					<td> <obs conceptId="162760"
+							  id="post_op_visit_type" answerConceptIds="1498,1499,1500"
+							  answerLabels="Mild,Moderate,Severe" required="true" style="radio"/></td>
+				</tr>               <tr>
+					<td>Notes:</td>
+					<td><obs conceptId="159395"
+							 id="clinical_note"
+							 style="textarea"/> </td>
+				</tr>               <tr>
+					<td>Name of Reviewing Officer:</td>
+					<td><encounterProvider role="Provider" type="autocomplete"/> </td>
+				</tr>
+				</table>
+			</fieldset>
+
 		</fieldset>
+
 
 	</div>
 	<div class="ke-form-footer">

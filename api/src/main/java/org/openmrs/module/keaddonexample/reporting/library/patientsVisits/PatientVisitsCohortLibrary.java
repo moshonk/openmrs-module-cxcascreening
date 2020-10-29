@@ -24,7 +24,7 @@ public class PatientVisitsCohortLibrary {
         String sqlQuery = "select patient_id from kenyaemr_etl.etl_patient_hiv_followup;";
         cd.setName("patientsEnrolledInHiv");
         cd.setQuery(sqlQuery);
-        cd.setDescription("Returns a list of patients enrolled in HIV");
+        cd.setDescription("Returns a list of patients who had clinical visits");
 
         return cd;
     }

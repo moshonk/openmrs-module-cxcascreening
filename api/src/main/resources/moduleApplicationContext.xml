@@ -87,6 +87,7 @@
 			<set>
 				<ref bean="kenyaemr.etl.common.report.patientClinicalVisits"/>
 				<ref bean="kenyaemr.etl.common.report.patientOnART"/>
+				<ref bean="kenyaemr.etl.common.report.hivPatientsVisits"/>
 			</set>
 		</property>
 	</bean>
@@ -111,4 +112,13 @@
 			</set></property>
 	</bean>
 
+	<bean id="kenyaemr.etl.common.report.hivPatientsVisits" class="org.openmrs.module.kenyacore.report.HybridReportDescriptor">
+		<property name="targetUuid" value="a2bc88d4-6766-46dd-b3ca-f3fd063d53d1" />
+		<property name="name" value="Patients with HIV Visits" />
+		<property name="description" value="A report for Patients with HIV Visits" />
+		<property name="apps">
+			<set>
+				<ref bean="kenyaemr.app.reports" />
+			</set></property>
+	</bean>
 </beans>

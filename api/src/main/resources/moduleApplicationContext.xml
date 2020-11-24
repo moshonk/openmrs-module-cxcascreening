@@ -5,79 +5,52 @@
 
 	<!-- Apps -->
 
-	<bean id="keaddonexample.app.example" factory-bean="kenyacore.appFactoryBean" factory-method="createInstance">
-		<constructor-arg value="keaddonexample.example" />
-		<constructor-arg value="Example" />
-		<constructor-arg value="keaddonexample/example/home.page" />
-		<constructor-arg value="keaddonexample:apps/example.png" />
+	<bean id="kenyaemr.app.cervicalcancerscreening" factory-bean="kenyacore.appFactoryBean" factory-method="createInstance">
+		<constructor-arg value="cervicalcancerscreening.cervicalcancerscreening" />
+		<constructor-arg value="Cervical Cancer Screening" />
+		<constructor-arg value="cervicalcancerscreening/cervicalcancerscreening/home.page" />
+		<constructor-arg value="kenyaui:apps/clinician.png" />
 		<constructor-arg value="700" />
 	</bean>
 
 		<!-- Forms config -->
-	<bean id="keaddonexample.config.form" class="org.openmrs.module.kenyacore.form.FormConfiguration">
+	<bean id="kenyaemr.cervicalcancerscreening.config.form" class="org.openmrs.module.kenyacore.form.FormConfiguration">
 		<property name="commonVisitForms">
 			<set>
-				<ref bean="keaddonexample.form.example" />
-				<ref bean="keaddonexample.form.socialworkadultscreening" />
-				<ref bean="keaddonexample.form.vmmcClientInitialForm" />
-				<ref bean="keaddonexample.form.vmmcClientFollowupForm" />
-
-
+				<ref bean="kenyaemr.form.cervicalCancerScreeningAssessment" />
+				<ref bean="kenyaemr.form.cervicalCancerScreening" />
 			</set>
 		</property>
 	</bean>
 
-	<!-- Forms addition -->
-	<bean id="keaddonexample.form.example" class="org.openmrs.module.kenyacore.form.FormDescriptor">
-		<property name="targetUuid" value="b694b1bc-2086-47dd-a4ad-ba48f9471e4b" />
+	<!-- Cervical cancer screening assessement form -->
+	<bean id="kenyaemr.form.cervicalCancerScreeningAssessment" class="org.openmrs.module.kenyacore.form.FormDescriptor">
+		<property name="targetUuid" value="48f2235ca-cc77-49cb-83e6-f526d5a5f174" />
 		<property name="apps">
 			<set>
 				<ref bean="kenyaemr.app.clinician" />
+				<ref bean="kenyaemr.app.intake" />
 				<ref bean="kenyaemr.app.chart" />
 			</set>
 		</property>
 		<property name="icon" value="kenyaui:forms/generic.png" />
-		<property name="htmlform" value="keaddonexample:example.html" />
+		<property name="showIfCalculation" value="org.openmrs.module.cervicalcancerscreening.calculation.EligibleForCervicalCancerScreeningCalculation" />
+		<property name="htmlform" value="cervicalcancerscreening:cervicalCancerScreeningAssessment.html" />
 	</bean>
 
-	<!-- Social work -->
-	<bean id="keaddonexample.form.socialworkadultscreening" class="org.openmrs.module.kenyacore.form.FormDescriptor">
-		<property name="targetUuid" value="0640058c-aa3f-47d0-867b-3025f2e5f80d" />
+	<!-- Cervical cancer screening form -->
+	<bean id="kenyaemr.form.cervicalCancerScreening" class="org.openmrs.module.kenyacore.form.FormDescriptor">
+		<property name="targetUuid" value="0c93b93c-bfef-4d2a-9fbe-16b59ee366e7" />
 		<property name="apps">
 			<set>
 				<ref bean="kenyaemr.app.clinician" />
+				<ref bean="kenyaemr.app.intake" />
 				<ref bean="kenyaemr.app.chart" />
 			</set>
 		</property>
 		<property name="icon" value="kenyaui:forms/generic.png" />
-		<property name="showIfCalculation" value="org.openmrs.module.keaddonexample.calculation.EligibleForAdultSocialWorkScreeningCalculation" />
-		<property name="htmlform" value="keaddonexample:socialworkadultscreening.html" />
-	</bean>
-
-	<!-- VMMC Initial -->
-	<bean id="keaddonexample.form.vmmcClientInitialForm" class="org.openmrs.module.kenyacore.form.FormDescriptor">
-		<property name="targetUuid" value="5f91bcbf-edd2-4580-9b9a-85fbfa37ac4e" />
-		<property name="apps">
-			<set>
-				<ref bean="kenyaemr.app.clinician" />
-				<ref bean="kenyaemr.app.chart" />
-			</set>
-		</property>
-		<property name="icon" value="kenyaui:forms/generic.png" />
-		<property name="htmlform" value="keaddonexample:vmmcClientInitialForm.html" />
-	</bean>
-
-	<!-- VMMC Followup -->
-	<bean id="keaddonexample.form.vmmcClientFollowupForm" class="org.openmrs.module.kenyacore.form.FormDescriptor">
-		<property name="targetUuid" value="434d97d1-13c7-4e2f-bae8-ca57eb42f6a0" />
-		<property name="apps">
-			<set>
-				<ref bean="kenyaemr.app.clinician" />
-				<ref bean="kenyaemr.app.chart" />
-			</set>
-		</property>
-		<property name="icon" value="kenyaui:forms/generic.png" />
-		<property name="htmlform" value="keaddonexample:vmmcClientFollowupForm.html" />
+		<property name="showIfCalculation" value="org.openmrs.module.cervicalcancerscreening.calculation.EligibleForCervicalCancerScreeningCalculation" />
+		<property name="htmlform" value="cervicalcancerscreening:cervicalCancerScreening.html" />
 	</bean>
 
 	<!-- Reports -->
@@ -85,40 +58,34 @@
 	<bean id="kenyaemr.config.addon.report" class="org.openmrs.module.kenyacore.report.ReportConfiguration">
 		<property name="commonReports">
 			<set>
-				<ref bean="kenyaemr.etl.common.report.patientClinicalVisits"/>
-				<ref bean="kenyaemr.etl.common.report.patientOnART"/>
-				<ref bean="kenyaemr.etl.common.report.hivPatientsVisits"/>
+				<ref bean="kenyaemr.etl.common.report.cervicalCancerScreenings"/>
+<!--
+				<ref bean="kenyaemr.etl.common.report.patientNotScreenedForCervicalCancer"/> 
+-->
 			</set>
 		</property>
 	</bean>
 
-	<bean id="kenyaemr.etl.common.report.patientClinicalVisits" class="org.openmrs.module.kenyacore.report.IndicatorReportDescriptor">
-		<property name="targetUuid" value="598dce12-6714-4ba3-8f70-6050ae45e09e" />
-		<property name="name" value="Patient Clinical Visits Report" />
-		<property name="description" value="A report for Patient Clinical Visits" />
+	<bean id="kenyaemr.etl.common.report.cervicalCancerScreenings" class="org.openmrs.module.kenyacore.report.HybridReportDescriptor">
+		<property name="targetUuid" value="45c01f8f-c726-4171-a050-8a03a88d1f00" />
+		<property name="name" value="Cervical Cancer Screenings Report" />
+		<property name="description" value="A report for Cervical Cancer Screenings" />
 		<property name="apps">
 			<set>
 				<ref bean="kenyaemr.app.reports" />
-			</set></property>
+			</set>
+		</property>
 	</bean>
-
-	<bean id="kenyaemr.etl.common.report.patientOnART" class="org.openmrs.module.kenyacore.report.HybridReportDescriptor">
-		<property name="targetUuid" value="5ef336f5b-de69-47a2-9d55-71a88a96fb14" />
-		<property name="name" value="Patients On ART Register" />
-		<property name="description" value="A report for Patient On ART" />
+<!-- 
+	<bean id="kenyaemr.etl.common.report.patientNotScreenedForCervicalCancer" class="org.openmrs.module.kenyacore.report.HybridReportDescriptor">
+		<property name="targetUuid" value="6f722472-552a-4975-b848-95c6ff02bf0d" />
+		<property name="name" value="Patients not screened for cervical cancer" />
+		<property name="description" value="A report for Patients not screened for cervical cancer" />
 		<property name="apps">
 			<set>
 				<ref bean="kenyaemr.app.reports" />
-			</set></property>
+			</set>
+		</property>
 	</bean>
-
-	<bean id="kenyaemr.etl.common.report.hivPatientsVisits" class="org.openmrs.module.kenyacore.report.HybridReportDescriptor">
-		<property name="targetUuid" value="a2bc88d4-6766-46dd-b3ca-f3fd063d53d1" />
-		<property name="name" value="Patients with HIV Visits" />
-		<property name="description" value="A report for Patients with HIV Visits" />
-		<property name="apps">
-			<set>
-				<ref bean="kenyaemr.app.reports" />
-			</set></property>
-	</bean>
+ -->
 </beans>

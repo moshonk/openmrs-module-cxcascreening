@@ -3,21 +3,21 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>org.openmrs.module</groupId>
-	<artifactId>keaddonexample</artifactId>
+	<artifactId>cervicalcancerscreening</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<name>KenyaEMR Add-on Example Module</name>
-	<description>Example of adding content to KenyaEMR</description>
+	<name>Cervical Cancer Screening Module</name>
+	<description>Cervical Cancer Screening for KenyaEMR</description>
 
 	<organization>
-		<name>I-TECH</name>
-		<url>http://www.go2itech.org</url>
+		<name>ICAP</name>
+		<url>https://icap.columbia.edu/where-we-work/kenya/</url>
 	</organization>
 
 	<scm>
-		<connection>scm:git:git@github.com:I-TECH/openmrs-module-keaddonexample.git</connection>
-		<developerConnection>scm:git:git@github.com:I-TECH/openmrs-module-keaddonexample.git</developerConnection>
-		<url>scm:git:git@github.com:I-TECH/openmrs-module-keaddonexample.git</url>
+		<connection>scm:git:git@github.com:moshonk/openmrs-module-cervicalcancerscreening.git</connection>
+		<developerConnection>scm:git:git@github.com:moshonk/openmrs-module-cervicalcancerscreening.git</developerConnection>
+		<url>scm:git:git@github.com:moshonk/openmrs-module-cervicalcancerscreening.git</url>
 	</scm>
 
 	<modules>

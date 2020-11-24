@@ -4,14 +4,14 @@
 
 	<parent>
 		<groupId>org.openmrs.module</groupId>
-		<artifactId>keaddonexample</artifactId>
+		<artifactId>cervicalcancerscreening</artifactId>
 		<version>1.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>keaddonexample-api</artifactId>
+	<artifactId>cervicalcancerscreening-api</artifactId>
 	<packaging>jar</packaging>
-	<name>KenyaEMR Add-on Example Module API</name>
-	<description>API project for KenyaEMR Add-on Example</description>
+	<name>Cervical Cancer Screening Module API</name>
+	<description>API project forCervical Cancer Screening</description>
 
 	<dependencies>
 

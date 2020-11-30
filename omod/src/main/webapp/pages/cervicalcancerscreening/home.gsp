@@ -9,7 +9,6 @@
 
 <div class="ke-page-sidebar">
 	${ ui.includeFragment("kenyaemr", "patient/patientSearchForm", [ defaultWhich: "all" ]) }
-	${ ui.includeFragment("kenyaui", "widget/panelMenu", [ heading: "mUzima Queue", items: menuItems ]) }
 </div>
 
 <div class="ke-page-content">

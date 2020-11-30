@@ -11,7 +11,7 @@
   ~
   ~ Copyright (C) OpenMRS, LLC.  All Rights Reserved.
   -->
-<htmlform>
+  <htmlform>
 	<script type="text/javascript" src="../moduleResources/kenyaemr/scripts/moment.js"></script>
 	<script type="text/javascript">
 
@@ -49,62 +49,82 @@
 		}
 
 		let hideHpvScreeningResult = () => {
-			jq("#tr_via_screening_result").hide();
+			jq("#tr_hpv_screening_result").hide();
 		}
 
 		let showHpvScreeningResult = () => {
 			jq("#tr_hpv_screening_result").show();
 		}
 
+		let showHideVisitTypeOptions = () => {
+			let visitType = getValue("visit_type.value");
+			if (visitType == POST_TX_COMPLICATION_CONCEPT_ID || visitType == "") {
+				jq("#tr_post_tx_complication").show();
+			} else {
+				jq("#tr_post_tx_complication").hide();
+			}			
+		}
+
+		let showHideScreeningMethodOptions = () => {
+			screeningMethod = getValue("screening_method.value");
+			if (screeningMethod == VIA_CONCEPT_ID) {
+				showViaScreeningResult();
+				hideViliScreeningResult();
+				hidePapSmearScreeningResult();
+				hideHpvScreeningResult();
+			} 
+
+			if (screeningMethod == VILI_CONCEPT_ID) {
+				hideViaScreeningResult();
+				showViliScreeningResult();
+				hidePapSmearScreeningResult();
+				hideHpvScreeningResult();
+			} 
+
+			if (screeningMethod == PAP_SMEAR_CONCEPT_ID) {
+				hideViaScreeningResult();
+				hideViliScreeningResult();
+				showPapSmearScreeningResult();
+				hideHpvScreeningResult();
+			} 
+
+			if (screeningMethod == HPV_TEST_CONCEPT_ID) {
+				hideViaScreeningResult();
+				hideViliScreeningResult();
+				hidePapSmearScreeningResult();
+				showHpvScreeningResult();
+			}
+		}
+
+		let showHideReferralOptions = () => {
+			let refferedOut = getValue("referred_out.value");
+			if (refferedOut == YES_CONCEPT_ID) {
+				jq("#t_referred_out").show();
+			} else {
+				jq("#t_referred_out").hide();
+			}
+		}
 
 		hideViaScreeningResult();
 		hideViliScreeningResult();
 		hidePapSmearScreeningResult();
 		hideHpvScreeningResult();
+		showHideVisitTypeOptions();
+		showHideScreeningMethodOptions();
+		showHideReferralOptions();
 
-		let visitType = getValue("visit_type.value");
-		if (visitType == POST_TX_COMPLICATION_CONCEPT_ID || visitType == "") {
-			jq("#tr_post_tx_complication").hide();
-		} else {
-			jq("#tr_post_tx_complication").show();
-		}
+		getField("visit_type.value").change(() => {
+			showHideVisitTypeOptions();
+		})
 
-		screeningMethod = getValue("screening_method.value");
-		if (screeningMethod == VIA_CONCEPT_ID) {
-			showViaScreeningResult();
-			hideViliScreeningResult();
-			hidePapSmearScreeningResult();
-			hideHpvScreeningResult();
-		} 
+		getField("screening_method.value").change(() => {
+			showHideScreeningMethodOptions();
+		})
 
-		if (screeningMethod == VILI_CONCEPT_ID) {
-			hideViaScreeningResult();
-			showViliScreeningResult();
-			hidePapSmearScreeningResult();
-			hideHpvScreeningResult();
-		} 
+		jq('#referred_out input:radio').change(() => {
+			showHideReferralOptions();
+		})
 
-		if (screeningMethod == PAP_SMEAR_CONCEPT_ID) {
-			hideViaScreeningResult();
-			hideViliScreeningResult();
-			showPapSmearScreeningResult();
-			hideHpvScreeningResult();
-		} 
-
-		if (screeningMethod == HPV_TEST_CONCEPT_ID) {
-			hideViaScreeningResult();
-			hideViliScreeningResult();
-			hidePapSmearScreeningResult();
-			showHpvScreeningResult();
-		} 
-
-		let refferedOut = getValue("referred_out.value");
-		if (refferedOut == YES_CONCEPT_ID) {
-			jq("#t_referred_out").show();
-		} else {
-			jq("#t_referred_out").hide();
-		}
-		
 		beforeSubmit.push(() => {
 			let screeningMethod = getValue("screening_method.value");
 			if (screeningMethod == VIA_CONCEPT_ID) {
@@ -112,24 +132,30 @@
 					getField("via_screening_result.error").html("Required field") 
 					return false;
 				}
+			}
 
+			if (screeningMethod == VILI_CONCEPT_ID) {
 				if (getValue("vili_screening_result.value") == "") {
 					getField("vili_screening_result.error").html("Required field") 
 					return false;
 				}
+			}
 
+			if (screeningMethod == PAP_SMEAR_CONCEPT_ID) {
 				if (getValue("pap_smear_screening_result.value") == "") {
 					getField("pap_smear_screening_result.error").html("Required field") 
 					return false;
 				}
+			}
 
+			if (screeningMethod == HPV_TEST_CONCEPT_ID) {
 				if (getValue("hpv_screening_result.value") == "") {
 					getField("hpv_screening_result.error").html("Required field") 
 					return false;
 				}
-
 			}
 
+			let refferedOut = getValue("referred_out.value");
 			if (refferedOut == YES_CONCEPT_ID) {
 				if (getValue("referred_to.value") == "") {
 					getField("referred_to.error").html("Provide value")
@@ -141,6 +167,8 @@
 					return false;
 				}  
 			}
+
+			return true;
 		})
 
 	});
@@ -233,7 +261,7 @@
 					<td>Screening method</td>
 					<td>
 						<obs id="screening_method" conceptId="163589AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-							answerConceptIds="162812AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,9818bba5-ecd4-4cf9-a48f-5e5d9a48eec6,885AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,159859AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+							answerConceptIds="162816AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,9818bba5-ecd4-4cf9-a48f-5e5d9a48eec6,885AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,159859AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
 							answerLabels="VIA, VILI, PAP Smear, HPV Test" style="dropdown" required="true"/>
 					</td>
 					<td>
@@ -316,7 +344,7 @@
 				<tr>
 					<td>Next appointment date</td>
 					<td>
-						<obs id="appointment" conceptId="5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
+						<obs id="appointment" conceptId="5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" allowFutureDates="true" />
 					</td>
 					<td></td>
 				</tr>
